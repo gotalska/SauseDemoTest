@@ -11,6 +11,19 @@ import static org.testng.Assert.assertTrue;
 public class LoginTest extends BaseTest {
 
     @Test
+    public void userCanLoginWithValidData() {
+        String price = "$29.99";
+        String name = "Sauce Labs Backpack";
+        WebDriver driver = new ChromeDriver();
+        driver.get("https://www.saucedemo.com");
+        driver.findElement(By.id("user-name")).sendKeys("standard_user");
+        driver.findElement(By.id("password")).sendKeys("secret_sauce");
+        driver.findElement(By.id("login-button")).click();
+        WebElement backpack = driver.findElement(By.xpath("//div[text()='Sauce Labs Backpack']"));
+        assertTrue(backpack.isDisplayed());
+    }
+
+    @Test
     public void loginUseraddProductToCart() {
         String price = "$29.99";
         String name = "Sauce Labs Backpack";
